@@ -1,4 +1,5 @@
-master:
+---
+controller:
   overwritePluginsFromImage: false
   runAsUser: 0
   fsGroup: 1000
@@ -16,10 +17,13 @@ master:
               fromUserRecord:
                 attributeName: "memberOf"
   additionalPlugins:
-    - ldap:1.24
+    - ldap:2.5
   scriptApproval:
     - "method groovy.json.JsonSlurperClassic parseText java.lang.String"
     - "new groovy.json.JsonSlurperClassic"
+
+  ingress:
+    enabled: true
 
 persistence:
   enabled: false
@@ -31,7 +35,7 @@ agent:
       memory: "2048Mi"
   envVars:
     - name: HOME
-      value: /home/jenkins
+      value: /home/jenkins/agent
     - name: PATH
       value: /usr/local/bin
   nodeSelector:
